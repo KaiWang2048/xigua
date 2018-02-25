@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+  <style type="text/css">
+    .content {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    .content:after {
+      content: '西瓜创客';
+      position: absolute;
+      width: 66px;
+      height: 80px;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+      font-size: 30px;
+      color: white;
+      z-index: 9999;
+      text-align: center;
+      display: block;
+
+    }
+
+    .fir {
+      background: #008000;
+      position: absolute;
+      width: 200px;
+      height: 100px;
+      top: 50px;
+    }
+
+    .fir:after {
+      content: '';
+      position: absolute;
+      border-bottom: 50px solid #008000;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      left: 0;
+      top: -50px;
+    }
+
+    .fir::before {
+      content: '';
+      position: absolute;
+      border-top: 50px solid #008000;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      bottom: -50px;
+      left: 0;
+    }
+
+    .sed {
+      background: red;
+      position: absolute;
+      width: 160px;
+      height: 80px;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 99;
+    }
+
+    .sed:after {
+      content: '';
+      position: absolute;
+      border-bottom: 40px solid red;
+      border-left: 80px solid transparent;
+      border-right: 80px solid transparent;
+      left: 0;
+      top: -40px;
+    }
+
+    .sed:before {
+      content: '';
+      position: absolute;
+      border-top: 40px solid red;
+      border-left: 80px solid transparent;
+      border-right: 80px solid transparent;
+      left: 0;
+      bottom: -40px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="content">
+    <div class="fir">
+      <div class="sed"></div>
+    </div>
+  </div>
+</body>
+
+</html>
