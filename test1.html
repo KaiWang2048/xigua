@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+
+<head>
+  <style type="text/css">
+    .body {
+      display: flex;
+      height: 500px;
+      background-color: red
+    }
+
+    .head {
+      width: 100%;
+      height: 100px;
+      background-color: red
+    }
+
+    .bodyRight {
+      flex: 1;
+      background-color: yellow
+    }
+
+    .bodyLeft {
+      width: 200px;
+       background-color: blue
+    }
+
+    .footer {
+      background-color: pink;
+    }
+
+    .btn {
+      position: absolute;
+      right: 20px;
+      top:35px;
+      display: block;
+
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+    }
+
+    .dialog1 {
+      display: none;
+      background-color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -100px 0 0 -150px;
+      width: 300px;
+      height: 200px;
+      z-index: 99;
+    }
+
+    .dialog2 {
+      background-color: green;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -100px 0 0 -150px;
+      width: 300px;
+      height: 200px;
+      z-index: 99;
+      line-height: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 4s linear;
+    }
+
+    .show {
+      opacity: .6;
+      visibility: visible;
+    }
+
+    .timeBtn {
+
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      font-size: 12px;
+      margin: 0 auto;
+    }
+
+    .closeDia1 {
+
+      display: block;
+      margin-left: 260px;
+      margin-top: 10px;
+    }
+
+    span {
+      opacity: 1;
+      font-size: 32px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="head">你好
+    <button class="btn" onclick="showDialog1()">点击弹出对话框</button>
+  </div>
+  <div class="body">
+    <div class="bodyLeft">
+   
+      <div id="hexagon"></div>
+    </div>
+    <div class="bodyRight">
+      右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边
+      右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边 右边
+      右边 右边 右边 右边
+    </div>
+  </div>
+  <div class="footer">
+    我是底部 我是底部 我是底部 我是底部 我是底部 我是底部 我是底部 我是底部 我是底部
+  </div>
+  <div class="dialog1">
+    <button class="closeDia1">x</button>
+    <button class="timeBtn" onclick="countDown(15,1000)">开始倒计时</button>
+  </div>
+  <div class="dialog2">
+  </div>
+</body>
+<script>
+  let dia1 = document.getElementsByClassName('dialog1')[0];
+  let btn = document.getElementsByClassName('btn')[0];
+  let dia2 = document.getElementsByClassName('dialog2')[0];
+  let timeBtn = document.getElementsByClassName('timeBtn')[0];
+
+  function showDialog1() {
+    dia1.style.display = "block";
+  };
+  document.onclick = function (e) {
+    if (e.target != dia1 && e.target != btn) {
+      dia1.style.display = "none";
+    }
+  };
+
+
+
+  timeBtn.addEventListener('click', () => {
+    let boxClassName = dia2.className
+    dia2.className += ' show'
+  })
+
+  var span = document.createElement('span');
+  dia2.appendChild(span);
+
+
+  //倒计时
+  let seconds = 15;
+  let speed = 1000;
+
+  function countDown(seconds, speed) {
+
+    dia2.style.visibility = 'visible'
+    document.getElementsByTagName('span')[0].style.color = 'black'
+    let _seconds = seconds;
+    var txt = "00 : " + ((_seconds < 10) ? "0" + _seconds : _seconds);
+    span.innerHTML = txt;
+    let timeId = setTimeout(
+      function () {
+        countDown(--_seconds, speed)
+      },
+      speed
+    )
+    console.log(_seconds, speed)
+    if (_seconds < 10) {
+      document.getElementsByTagName('span')[0].style.color = 'red'
+      if (_seconds == 0) {
+        dia2.style.visibility = 'hidden'
+        clearTimeout(timeId)
+      };
+
+    };
+
+  }
+</script>
+
+</html>
